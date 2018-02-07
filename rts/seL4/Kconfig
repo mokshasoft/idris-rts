@@ -1,0 +1,10 @@
+config LIB_IDRIS_SEL4_RTS
+    bool "libidris-sel4-rts"
+    default y
+    select HAVE_LIB_IDRIS_SEL4_RTS
+    help
+        Idris RTS compiled for seL4
+
+config HAVE_LIB_IDRIS_SEL4_RTS
+    bool
+
