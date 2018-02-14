@@ -5,7 +5,7 @@
 
 void _idris__123_runMain_95_0_125_(VM* vm, VAL* oldbase);
 
-RTSOpts opts = { 
+RTSOpts opts = {
     .init_heap_size = 16384000,
     .max_stack_size = 4096000,
     .show_summary   = 0

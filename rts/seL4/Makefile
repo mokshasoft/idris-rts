@@ -23,7 +23,7 @@ CFILES := $(addprefix rts/,$(FILES))
 HDRFILES := $(wildcard ${SOURCE_DIR}/rts/*)
 
 CFLAGS += -W -Wall
-# Don't use the host machines' environment when cross compiling 
+# Don't use the host machines' environment when cross compiling
 CFLAGS += -undef
 CFLAGS += -DIDRIS_TARGET_OS=\"seL4\"
 MACHINE := $(shell $(CC) -dumpmachine)
