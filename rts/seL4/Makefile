@@ -26,6 +26,7 @@ CFLAGS += -W -Wall
 # Don't use the host machines' environment when cross compiling
 CFLAGS += -undef
 CFLAGS += -DIDRIS_TARGET_OS=\"seL4\"
+CFLAGS += -DSEL4
 MACHINE := $(shell $(CC) -dumpmachine)
 CFLAGS += -DIDRIS_TARGET_TRIPLE=\"$(MACHINE)\"
 
