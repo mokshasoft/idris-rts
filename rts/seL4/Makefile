@@ -27,6 +27,9 @@ LIBS = \
     c
 
 CFLAGS += -W -Wall
+# Ignore some warnings
+CFLAGS += -Wno-unused-parameter
+CFLAGS += -Wno-sign-compare
 # Don't use the host machines' environment when cross compiling
 CFLAGS += -undef
 CFLAGS += -DIDRIS_TARGET_OS=\"seL4\"
