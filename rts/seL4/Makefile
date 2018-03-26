@@ -22,6 +22,10 @@ CFILES := $(addprefix rts/,$(FILES))
 # Header file directory this library provides
 HDRFILES := $(wildcard ${SOURCE_DIR}/rts/*)
 
+# Libraries needed to the lib
+LIBS = \
+    c
+
 CFLAGS += -W -Wall
 # Don't use the host machines' environment when cross compiling
 CFLAGS += -undef
