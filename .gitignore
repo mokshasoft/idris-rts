@@ -1,5 +1,3 @@
 # Ignore symbolic links setup by the seL4 project configuration
-Kbuild
-Kconfig
-Makefile
+CMakeLists.txt
 
