@@ -1,12 +1,7 @@
 #ifndef _IDRISGMP_H
 #define _IDRISGMP_H
 
-#ifdef IDRIS_GMP
-#include <gmp.h>
-#else
 #include "mini-gmp.h"
-#endif
-
 #include "idris_rts.h"
 
 // Set memory allocation functions

@@ -1,9 +1,5 @@
 #include "idris_rts.h"
-#ifdef IDRIS_GMP
-#include <gmp.h>
-#else
 #include "mini-gmp.h"
-#endif
 #include <stdlib.h>
 #include <string.h>
 

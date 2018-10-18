@@ -627,6 +627,7 @@ VAL idris_strlen(VM* vm, VAL l) {
     return MKINT((i_int)(idris_utf8_strlen(GETSTR(l))));
 }
 
+#ifndef SEL4
 VAL idris_readStr(VM* vm, FILE* h) {
     VAL ret;
     char *buffer = NULL;
@@ -657,6 +658,7 @@ VAL idris_readChars(VM* vm, int num, FILE* h) {
     free(buffer);
     return ret;
 }
+#endif // SEL4
 
 void idris_crash(char* msg) {
     fprintf(stderr, "%s\n", msg);
