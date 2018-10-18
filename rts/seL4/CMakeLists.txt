@@ -3,20 +3,20 @@ cmake_minimum_required(VERSION 3.7.2)
 project(libsel4-idris-rts C)
 
 file(GLOB static
-    rts/*idris_rts.c
-    rts/*idris_heap.c
-    rts/*idris_gc.c
-    rts/*idris_gmp.c
-    rts/*idris_bitstring.c
-    rts/*idris_opts.c
-    rts/*idris_stats.c
-    rts/*idris_utf8.c
-    rts/*idris_stdfgn.c
-    rts/*mini-gmp.c
-    rts/*idris_buffer.c
-    rts/*getline.c
-    rts/*idris_net.c
-    rts/*seL4/idris_main.c
+    rts/idris_rts.c
+    rts/idris_heap.c
+    rts/idris_gc.c
+    rts/idris_gmp.c
+    rts/idris_bitstring.c
+    rts/idris_opts.c
+    rts/idris_stats.c
+    rts/idris_utf8.c
+    rts/idris_stdfgn.c
+    rts/mini-gmp.c
+    rts/idris_buffer.c
+    rts/getline.c
+    rts/idris_net.c
+    rts/seL4/idris_main.c
 )
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -W -Wall")
