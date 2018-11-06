@@ -41,10 +41,14 @@ see https://www.gnu.org/licenses/.  */
    mpn/generic/sbpi1_div_qr.c, mpn/generic/sub_n.c,
    mpn/generic/submul_1.c. */
 
+#ifndef BARE_METAL
 #include <assert.h>
+#include <stdio.h>
+#else
+#include "idris_no_libc.h"
+#endif
 #include <ctype.h>
 #include <limits.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -71,10 +75,14 @@ see https://www.gnu.org/licenses/.  */
 
 #define GMP_CMP(a,b) (((a) > (b)) - ((a) < (b)))
 
+#ifndef BARE_METAL
 #define gmp_assert_nocarry(x) do { \
     mp_limb_t __cy = (x);	   \
     assert (__cy == 0);		   \
   } while (0)
+#else
+#define gmp_assert_nocarry(...)
+#endif
 
 #define gmp_clz(count, x) do {						\
     mp_limb_t __clz_x = (x);						\
@@ -4231,6 +4239,7 @@ mpz_init_set_str (mpz_t r, const char *sp, int base)
   return mpz_set_str (r, sp, base);
 }
 
+#ifndef BARE_METAL
 size_t
 mpz_out_str (FILE *stream, int base, const mpz_t x)
 {
@@ -4243,6 +4252,7 @@ mpz_out_str (FILE *stream, int base, const mpz_t x)
   gmp_free (str);
   return len;
 }
+#endif // BARE_METAL
 
 
 static int

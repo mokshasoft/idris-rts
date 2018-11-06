@@ -1,9 +1,13 @@
 #ifndef _IDRISRTS_H
 #define _IDRISRTS_H
 
-#include <assert.h>
 #include <stdlib.h>
+#ifndef BARE_METAL
+#include <assert.h>
 #include <stdio.h>
+#else
+#include "idris_no_libc.h"
+#endif
 #include <string.h>
 #ifdef HAS_PTHREAD
 #include <stdarg.h>
@@ -460,10 +464,12 @@ VAL idris_concat(VM* vm, VAL l, VAL r);
 VAL idris_strlt(VM* vm, VAL l, VAL r);
 VAL idris_streq(VM* vm, VAL l, VAL r);
 VAL idris_strlen(VM* vm, VAL l);
+#ifndef BARE_METAL
 // Read a line from a file
 VAL idris_readStr(VM* vm, FILE* h);
 // Read up to 'num' characters from a file
 VAL idris_readChars(VM* vm, int num, FILE* h);
+#endif
 
 VAL idris_strHead(VM* vm, VAL str);
 VAL idris_strShift(VM* vm, VAL str, int num);

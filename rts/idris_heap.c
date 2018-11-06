@@ -4,8 +4,12 @@
 
 #include <stdlib.h>
 #include <stddef.h>
+#ifndef BARE_METAL
 #include <stdio.h>
 #include <assert.h>
+#else
+#include "idris_no_libc.h"
+#endif
 
 static void c_heap_free_item(CHeap * heap, CHeapItem * item)
 {

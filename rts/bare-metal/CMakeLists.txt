@@ -8,7 +8,6 @@ file(GLOB static
     rts/idris_gc.c
     rts/idris_gmp.c
     rts/idris_bitstring.c
-    rts/idris_stats.c
     rts/idris_utf8.c
     rts/mini-gmp.c
     rts/bare-metal/idris_main.c
