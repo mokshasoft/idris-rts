@@ -11,7 +11,7 @@ file(GLOB static
     rts/idris_stats.c
     rts/idris_utf8.c
     rts/mini-gmp.c
-    rts/seL4/idris_main.c
+    rts/bare-metal/idris_main.c
 )
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -W -Wall")
