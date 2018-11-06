@@ -1,5 +1,3 @@
-#include <assert.h>
-
 #include "idris_rts.h"
 
 VAL idris_b8CopyForGC(VM *vm, VAL a) {

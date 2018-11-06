@@ -165,6 +165,14 @@ VAL idris_time() {
     return MKBIGI(t);
 }
 
+int idris_usleep(int usec) {
+    struct timespec t;
+    t.tv_sec = usec / 1000000;
+    t.tv_nsec = (usec % 1000000) * 1000;
+
+    return nanosleep(&t, NULL);
+}
+
 VAL idris_mkFileError(VM* vm) {
     VAL result;
     switch(errno) {
@@ -220,3 +228,7 @@ VAL idris_getString(VM* vm, void* buffer) {
     return str;
 }
 
+void idris_disableBuffering(void) {
+  setvbuf(stdin, NULL, _IONBF, 0);
+  setvbuf(stdout, NULL, _IONBF, 0);
+}

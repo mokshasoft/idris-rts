@@ -2,7 +2,11 @@
 #define _IDRISRTS_H
 
 #include <stdlib.h>
+#ifndef BARE_METAL
 #include <stdio.h>
+#else
+#include "idris_no_libc.h"
+#endif
 #include <string.h>
 #include <stdarg.h>
 #ifdef HAS_PTHREAD
@@ -399,10 +403,12 @@ VAL idris_concat(VM* vm, VAL l, VAL r);
 VAL idris_strlt(VM* vm, VAL l, VAL r);
 VAL idris_streq(VM* vm, VAL l, VAL r);
 VAL idris_strlen(VM* vm, VAL l);
+#ifndef BARE_METAL
 // Read a line from a file
 VAL idris_readStr(VM* vm, FILE* h);
 // Read up to 'num' characters from a file
 VAL idris_readChars(VM* vm, int num, FILE* h);
+#endif
 
 VAL idris_strHead(VM* vm, VAL str);
 VAL idris_strShift(VM* vm, VAL str, int num);
@@ -438,13 +444,6 @@ extern char **__idris_argv;
 
 int idris_numArgs(void);
 const char *idris_getArg(int i);
-
-// disable stdin/stdout buffering
-void idris_disableBuffering(void);
-
-#ifndef SEL4
-int idris_usleep(int usec);
-#endif // SEL4
 
 // Handle stack overflow.
 // Just reports an error and exits.

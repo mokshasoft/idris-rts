@@ -2,7 +2,11 @@
 #include "idris_rts.h"
 #include "idris_gc.h"
 #include "idris_bitstring.h"
+#ifndef BARE_METAL
 #include <assert.h>
+#else
+#include "idris_no_libc.h"
+#endif
 
 VAL copy(VM* vm, VAL x) {
     int ar, len;

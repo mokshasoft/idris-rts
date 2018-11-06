@@ -47,6 +47,11 @@ char* getEnvPair(int i);
 
 VAL idris_time();
 
+int idris_usleep(int usec);
+
 void idris_forceGC();
+
+// disable stdin/stdout buffering
+void idris_disableBuffering(void);
 
 #endif

@@ -1,11 +1,17 @@
+#ifndef BARE_METAL
 #include <assert.h>
+#else
+#include "idris_no_libc.h"
+#endif // BARE_METAL
 #include <errno.h>
 
 #include "idris_rts.h"
 #include "idris_gc.h"
 #include "idris_utf8.h"
 #include "idris_bitstring.h"
+#ifndef BARE_METAL
 #include "getline.h"
+#endif // BARE_METAL
 
 #ifdef HAS_PTHREAD
 static pthread_key_t vm_key;
@@ -627,6 +633,7 @@ VAL idris_strlen(VM* vm, VAL l) {
     return MKINT((i_int)(idris_utf8_strlen(GETSTR(l))));
 }
 
+#ifndef BARE_METAL
 VAL idris_readStr(VM* vm, FILE* h) {
     VAL ret;
     char *buffer = NULL;
@@ -657,6 +664,7 @@ VAL idris_readChars(VM* vm, int num, FILE* h) {
     free(buffer);
     return ret;
 }
+#endif // BARE_METAL
 
 void idris_crash(char* msg) {
     fprintf(stderr, "%s\n", msg);
@@ -1219,21 +1227,6 @@ int idris_numArgs(void) {
 const char* idris_getArg(int i) {
     return __idris_argv[i];
 }
-
-void idris_disableBuffering(void) {
-  setvbuf(stdin, NULL, _IONBF, 0);
-  setvbuf(stdout, NULL, _IONBF, 0);
-}
-
-#ifndef SEL4
-int idris_usleep(int usec) {
-    struct timespec t;
-    t.tv_sec = usec / 1000000;
-    t.tv_nsec = (usec % 1000000) * 1000;
-
-    return nanosleep(&t, NULL);
-}
-#endif // SEL4
 
 void stackOverflow(void) {
   fprintf(stderr, "Stack overflow");
