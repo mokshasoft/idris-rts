@@ -24,7 +24,6 @@ int main() {
     }
 #endif
 
-    free_nullaries();
     // Remove call to terminate since it crashes the application during a free
     //Stats stats = terminate(vm);
 
