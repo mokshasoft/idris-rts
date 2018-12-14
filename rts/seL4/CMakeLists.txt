@@ -19,7 +19,7 @@ file(GLOB static
     rts/seL4/idris_main.c
 )
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -W -Wall")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 # Ignore some warnings
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-parameter")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-sign-compare")
