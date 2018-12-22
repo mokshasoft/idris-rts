@@ -53,6 +53,10 @@ char* getEnvPair(int i);
 
 VAL idris_time();
 
+#ifndef SEL4
+int idris_usleep(int usec);
+#endif // SEL4
+
 void idris_forceGC();
 
 VAL idris_currentDir();

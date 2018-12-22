@@ -205,6 +205,16 @@ VAL idris_time() {
     return MKBIGI(t);
 }
 
+#ifndef SEL4
+int idris_usleep(int usec) {
+    struct timespec t;
+    t.tv_sec = usec / 1000000;
+    t.tv_nsec = (usec % 1000000) * 1000;
+
+    return nanosleep(&t, NULL);
+}
+#endif // SEL4
+
 VAL idris_mkFileError(VM* vm) {
     VAL result;
     switch(errno) {
