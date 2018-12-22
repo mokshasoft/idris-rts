@@ -283,7 +283,7 @@ typedef intptr_t i_int;
 
 #define INITFRAME TRACE\
                   __attribute__((unused)) VAL* myoldbase;\
-                  void* callres
+                  __attribute__((unused)) void* callres
 
 #define REBASE vm->valstack_base = oldbase; return NULL
 #define RESERVE(x) do { \
