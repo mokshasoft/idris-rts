@@ -17,6 +17,10 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -W -Wall")
 # Ignore some warnings
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-parameter")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-sign-compare")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-variable")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-empty-body")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-maybe-uninitialized")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-but-set-variable")
 # Don't use the host machines' environment when cross compiling
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DIDRIS_TARGET_OS=\"\\\"bare-metal\\\"\"")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DBARE_METAL")
