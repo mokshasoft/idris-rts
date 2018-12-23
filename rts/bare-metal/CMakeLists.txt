@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.7.2)
 
-project(libsel4-idris-rts C)
+project(idris-rts-bare-metal C)
 
 file(GLOB static
     rts/idris_rts.c
