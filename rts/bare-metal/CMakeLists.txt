@@ -34,3 +34,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DIDRIS_TARGET_TRIPLE=\"\\\"${MACHINE}\\\"\"
 
 add_library(idris-rts-bare-metal EXCLUDE_FROM_ALL ${static})
 target_include_directories(idris-rts-bare-metal PUBLIC rts)
+target_link_libraries(
+    idris-rts-bare-metal
+    utils
+)
