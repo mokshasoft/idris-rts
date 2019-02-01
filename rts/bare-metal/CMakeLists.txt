@@ -11,7 +11,6 @@ file(GLOB static
     rts/idris_utf8.c
     rts/mini-gmp.c
     rts/bare-metal/idris_main.c
-    rts/bare-metal/syscalls.c
 )
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -W -Wall")
@@ -36,5 +35,5 @@ add_library(idris-rts-bare-metal EXCLUDE_FROM_ALL ${static})
 target_include_directories(idris-rts-bare-metal PUBLIC rts)
 target_link_libraries(
     idris-rts-bare-metal
-    utils
+    c
 )
