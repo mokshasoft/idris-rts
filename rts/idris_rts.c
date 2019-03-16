@@ -216,7 +216,6 @@ void * allocate(size_t sz, int lock) {
 }
 
 void* iallocate(VM * vm, size_t isize, int outerlock) {
-//    return malloc(isize);
     size_t size = aligned(isize);
 
 #ifdef HAS_PTHREAD
@@ -232,7 +231,6 @@ void* iallocate(VM * vm, size_t isize, int outerlock) {
         char* ptr = vm->heap.next;
         vm->heap.next += size;
         assert(vm->heap.next <= vm->heap.end);
-        memset(ptr, 0, size);
         ((Hdr*)ptr)->sz = isize;
 
 #ifdef HAS_PTHREAD
