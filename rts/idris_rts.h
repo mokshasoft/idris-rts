@@ -156,6 +156,7 @@ struct VM {
 
     int processes; // Number of child processes
     int max_threads; // maximum number of threads to run in parallel
+    struct VM* creator; // The VM that created this VM, NULL for root VM
 #endif
     Stats stats;
 
@@ -294,6 +295,9 @@ typedef intptr_t i_int;
     if (vm->valstack_top+(x) > vm->stack_max) { stackOverflow(); } \
     else { memset(vm->valstack_top, 0, (x)*sizeof(VAL)); } \
   } while(0)
+#define RESERVENOALLOC(x) do { \
+    if (vm->valstack_top+(x) > vm->stack_max) { stackOverflow(); } \
+  } while(0)
 #define ADDTOP(x) vm->valstack_top += (x)
 #define TOPBASE(x) vm->valstack_top = vm->valstack_base + (x)
 #define BASETOP(x) vm->valstack_base = vm->valstack_top + (x)
@@ -335,7 +339,7 @@ size_t GETSTROFFLEN(VAL stroff);
 #define PROJECT(vm,r,loc,num) \
     memcpy(&(LOC(loc)), ((Con*)(r))->args, sizeof(VAL)*num)
 #define SLIDE(vm, args) \
-    memcpy(&(LOC(0)), &(TOP(0)), sizeof(VAL)*args)
+    memmove(&(LOC(0)), &(TOP(0)), sizeof(VAL)*args)
 
 void* iallocate(VM *, size_t, int);
 

@@ -11,9 +11,7 @@
 #include <unistd.h>
 
 #ifdef _WIN32
-int win_fpoll(void* h);
-FILE *win32_u8fopen(const char *path, const char *mode);
-FILE *win32_u8popen(const char *path, const char *mode);
+#include "windows/win_utils.h"
 #else
 #include <sys/select.h>
 #endif
@@ -46,6 +44,10 @@ int fileEOF(void* h) {
 int fileError(void* h) {
     FILE* f = (FILE*)h;
     return ferror(f);
+}
+
+int fileRemove(const char *filename) {
+    return remove(filename);
 }
 
 int fileSize(void* h) {
@@ -206,7 +208,28 @@ VAL idris_time() {
     return MKBIGI(t);
 }
 
+VAL idris_clock(VM* vm) {
+    VAL result;
+#ifdef _WIN32
+    int64_t sec, nsec;
+    win32_gettime(&sec, &nsec);
+    idris_constructor(result, vm, 0, 2, 0);
+    idris_setConArg(result, 0, MKBIGI(sec));
+    idris_setConArg(result, 1, MKBIGI(nsec));
+#else
+    struct timespec ts;
+    // We're not checking the result here, which is of course bad, but
+    // CLOCK_REALTIME is required by POSIX at least!
+    clock_gettime(CLOCK_REALTIME, &ts);
+    idris_constructor(result, vm, 0, 2, 0);
+    idris_setConArg(result, 0, MKBIGI(ts.tv_sec));
+    idris_setConArg(result, 1, MKBIGI(ts.tv_nsec));
+#endif
+    return result;
+}
+
 #ifndef SEL4
+#ifndef BARE_METAL
 int idris_usleep(int usec) {
     struct timespec t;
     t.tv_sec = usec / 1000000;
@@ -214,6 +237,7 @@ int idris_usleep(int usec) {
 
     return nanosleep(&t, NULL);
 }
+#endif // BARE_METAL
 #endif // SEL4
 
 VAL idris_mkFileError(VM* vm) {

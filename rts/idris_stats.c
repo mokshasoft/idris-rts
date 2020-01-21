@@ -58,7 +58,7 @@ void aggregate_stats(Stats * stats1, const Stats * stats2) {
 
 void print_stats(const Stats * stats) {
     fprintf(stderr, "RTS ERROR: Stats are disabled.\n"  \
-                    "By the way GC called %lu times.\n", stats->collections);
+                    "By the way GC called %d times.\n", stats->collections);
 }
 
 void aggregate_stats(Stats * stats1, const Stats * stats2) {
